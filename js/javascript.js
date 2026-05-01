@@ -4,6 +4,7 @@ function showPanel(id, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Swipe gesture detection for mobile
@@ -14,7 +15,7 @@ function handleSwipe() {
   const threshold = 50;
   const diff = touchStartX - touchEndX;
   const activeTab = document.querySelector('.tab.active');
-  
+
   if (Math.abs(diff) > threshold) {
     if (diff > 0) {
       // Swipe left - move to next tab
