@@ -5,8 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cafecito o Miedo — Menú</title>
+  <meta name="description"
+    content="Menú de Cafecito o Miedo — café de especialidad, bebidas artesanales y comida en un ambiente único.">
+  <meta property="og:title" content="Cafecito o Miedo — Menú">
+  <meta property="og:description" content="Descubre nuestro menú de cafés, bebidas y comidas artesanales.">
+  <meta property="og:image" content="img/logo.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="img/logo.png">
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -27,6 +34,7 @@
     <div class="tabs">
       <button class="tab active" onclick="showPanel('bebidas', this)">Bebidas</button>
       <button class="tab" onclick="showPanel('comidas', this)">Comidas</button>
+      <button class="tab" onclick="showPanel('ruleta', this); initRuleta();">Ruleta</button>
     </div>
 
     <!-- ============================= -->
@@ -194,7 +202,7 @@
           <div class="item"><span class="item-name">Tres Cordilleras</span><span class="item-dots"></span><span
               class="item-price">7 K</span></div>
         </div>
-        <div class="cat-block"></div>
+
       </div>
 
       <!-- SHOTS -->
@@ -214,7 +222,7 @@
           <div class="item"><span class="item-name">Shot de Whisky</span><span class="item-dots"></span><span
               class="item-price">15 K</span></div>
         </div>
-        <div class="cat-block"></div>
+
       </div>
 
     </div><!-- /bebidas -->
@@ -296,7 +304,7 @@
           <div class="item"><span class="item-name">Zanahoria</span><span class="item-dots"></span><span
               class="item-price">8 K</span></div>
         </div>
-        <!-- Helado Frito eliminado -->
+
       </div>
 
       <!-- MENÚ INFANTIL -->
@@ -312,7 +320,7 @@
           <div class="item"><span class="item-name">Nuggets de pollo + papa + hit</span><span
               class="item-dots"></span><span class="item-price">12 K</span></div>
         </div>
-        <div class="cat-block"></div>
+
       </div>
 
       <!-- ADICIONALES -->
@@ -332,10 +340,61 @@
           <div class="item"><span class="item-name">Porción de queso cuajada o doble crema</span><span
               class="item-dots"></span><span class="item-price">4 K</span></div>
         </div>
-        <div class="cat-block"></div>
+
       </div>
 
     </div><!-- /comidas -->
+
+    <!-- ============================= -->
+    <!-- RULETA PANEL -->
+    <!-- ============================= -->
+    <div id="ruleta" class="menu-panel">
+      <div class="ruleta-container">
+        <div class="ruleta-header">
+          <p class="ruleta-title">¿No sabes qué pedir?</p>
+          <p class="ruleta-subtitle">Deja que la suerte decida por ti</p>
+        </div>
+
+        <div class="ruleta-dual">
+          <!-- COMIDAS WHEEL -->
+          <div class="ruleta-col">
+            <div class="ruleta-col-label">🍔 Comidas</div>
+            <div class="ruleta-wheel-wrap">
+              <div class="ruleta-pointer"></div>
+              <canvas id="wheel-comidas"></canvas>
+              <div class="wheel-result">
+                <div class="wheel-result-emoji"></div>
+                <p class="wheel-result-name"></p>
+                <p class="wheel-result-tap">toca para cerrar</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BEBIDAS WHEEL -->
+          <div class="ruleta-col">
+            <div class="ruleta-col-label">☕ Bebidas</div>
+            <div class="ruleta-filter">
+              <button class="filter-btn active" data-filter="todas" onclick="setBebidasFilter('todas')">Todas</button>
+              <button class="filter-btn" data-filter="cafe" onclick="setBebidasFilter('cafe')">Solo Café</button>
+            </div>
+            <div class="ruleta-wheel-wrap">
+              <div class="ruleta-pointer"></div>
+              <canvas id="wheel-bebidas"></canvas>
+              <div class="wheel-result">
+                <div class="wheel-result-emoji"></div>
+                <p class="wheel-result-name"></p>
+                <p class="wheel-result-tap">toca para cerrar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ruleta-buttons-wrap">
+          <button class="ruleta-spin-btn" id="ruleta-spin-comidas" onclick="spinComidas()">Girar Comidas</button>
+          <button class="ruleta-spin-btn" id="ruleta-spin-bebidas" onclick="spinBebidas()">Girar Bebidas</button>
+        </div>
+      </div>
+    </div><!-- /ruleta -->
 
     <!-- ============================= -->
     <!-- REDES SOCIALES -->
@@ -347,7 +406,7 @@
         <!-- TIKTOK -->
         <div class="red-card">
           <a class="red-icon-link" id="link-tiktok"
-            href="https://www.tiktok.com/@cafecito.o.miedo?_r=1&_t=ZS-95PgDEiXwrV target=" _blank" rel="noopener"
+            href="https://www.tiktok.com/@cafecito.o.miedo?_r=1&_t=ZS-95PgDEiXwrV" target="_blank" rel="noopener"
             title="TikTok">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -410,6 +469,7 @@
   </div><!-- /page -->
 
   <script src="js/javascript.js"></script>
+  <script src="js/ruleta.js"></script>
 </body>
 
 </html>
