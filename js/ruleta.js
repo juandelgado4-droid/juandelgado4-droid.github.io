@@ -78,6 +78,11 @@ const todasBebidasItems = [
   { name: 'Club Colombia', emoji: '🍺' },
   { name: 'Cerveza Light', emoji: '🍺' },
   { name: 'Tres Cordilleras', emoji: '🍺' },
+  // Shots
+  { name: 'Shot Brandy', emoji: '🥃' },
+  { name: 'Shot Aguardiente', emoji: '🥃' },
+  { name: 'Shot Baileys', emoji: '🥛' },
+  { name: 'Shot Whisky', emoji: '🥃' },
 ];
 
 // SOLO café (todas las variantes con café)
