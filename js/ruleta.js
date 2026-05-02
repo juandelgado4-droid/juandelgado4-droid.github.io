@@ -118,6 +118,38 @@ class WheelSpinner {
     this.size = 0;
     this.setupCanvas();
     this.draw();
+    this.attachCanvasClick();
+  }
+
+  attachCanvasClick() {
+    this.canvas.addEventListener('click', (e) => this.handleCanvasClick(e));
+  }
+
+  handleCanvasClick(e) {
+    if (this.isSpinning) return;
+    
+    const rect = this.canvas.getBoundingClientRect();
+    const scaleX = this.canvas.width / rect.width;
+    const scaleY = this.canvas.height / rect.height;
+    
+    const clickX = (e.clientX - rect.left) * scaleX;
+    const clickY = (e.clientY - rect.top) * scaleY;
+    
+    const distFromCenter = Math.sqrt(
+      Math.pow(clickX - this.cx * window.devicePixelRatio, 2) +
+      Math.pow(clickY - this.cy * window.devicePixelRatio, 2)
+    );
+    
+    const centerRadius = this.size * 0.09 * window.devicePixelRatio;
+    
+    if (distFromCenter <= centerRadius * 1.4) {
+      // Determine which wheel this is and trigger the corresponding spin
+      if (this.canvas.id === 'wheel-comidas') {
+        spinComidas();
+      } else if (this.canvas.id === 'wheel-bebidas') {
+        spinBebidas();
+      }
+    }
   }
 
   setItems(newItems) {
